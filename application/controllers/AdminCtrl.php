@@ -18,10 +18,32 @@ class AdminCtrl extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function index($lang='ch')
 	{
-        $this->twig->view('welcome_message.php');
+	    if($lang == 'ch'){
+            $this->lang->load('login','simplified-chinese');
+            $data['title'] = $this->lang->line('login_title');
+            $data['login'] = json_encode($this->lang);
+        } else {
+            $this->lang->load('login','english');
+            $data['title'] = $this->lang->line('login_title');
+            $data['login'] = json_encode($this->lang);
+        }
+
+        $this->twig->view('login.html',$data);
 	}
+
+	public function login(){
+
+    }
+
+    public function forget(){
+
+    }
+
+    public function register(){
+
+    }
 
 	public function admin()
 	{

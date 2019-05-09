@@ -3,10 +3,14 @@ window.jQuery = jQuery;
 require('./bootstrap');
 
 import Vue from 'vue';
-import Vuex from 'vuex';
-Vue.use(Vuex);
+import VueBus from 'vue-bus';
+
+Vue.use(VueBus);
 window.Vue = Vue;
 
+
+import Login from './components/Login.vue';
+Vue.component('Login',Login);
 
 const app = new Vue({
     el: '#app'
