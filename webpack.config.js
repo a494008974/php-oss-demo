@@ -10,7 +10,7 @@ module.exports = {
 	  },
   output: {
     path: path.resolve(__dirname, './public/dist'),
-    publicPath: '/Launcher/public/dist/',
+    publicPath: '/php-oss-demo/public/dist/',
     filename: '[name].bundle.js'
   },
   plugins: [

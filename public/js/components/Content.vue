@@ -41,19 +41,22 @@
 				</div>
 			</div>
 			<div class="layout_main_content">
-				<ncontenttab :height="contentHeight.height"></ncontenttab>
+				<ncontenttab :height="contentHeight.height" :basedata="basedata"></ncontenttab>
 			 </div>
 		</div>
 </template>
 <script>
 
     export default {
+		props:{
+			basedata:null
+		},
 		data: function() {
             return {
 				content:"",
 				contentHeight: {
 					height: "0"
-				  }
+				}
             }
         },
 		created() {

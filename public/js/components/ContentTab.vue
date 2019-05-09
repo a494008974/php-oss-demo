@@ -15,10 +15,14 @@
 		border-bottom: 1px solid #dddee1;
 		margin-bottom: 0px;
 	}
+
+	#app > div.layout_content > div.layout_main_content > div > div > div.ivu-tabs-bar > div > div > div > div > div:nth-child(2) > i{
+		display: none;
+	}
 	
 	.layout-iframe{
 		width:100%; 
-		height:300;
+		height:300px;
 		frameborder:no;
 		border:0px;
 		marginwidth:0px;
@@ -30,7 +34,7 @@
 		<div>
 			<Tabs type="card" closable @on-tab-remove="handleTabRemove" :value="value" :animated="false">
 				<Tab-pane label="首页"  name="index" v-if="showIndex">
-					<iframe class="layout-iframe" :style="contentHeight" src="http://www.baidu.com"></iframe>
+					<iframe class="layout-iframe" :style="contentHeight" :src=basedata.base_url+basedata.base_index></iframe>
 				</Tab-pane>
 				<Tab-pane v-for="tab in tabs" :key="tab.id" :name="tab.id" :label="tab.name.title" v-if="tab.visable">
 					<iframe class="layout-iframe" :style="contentHeight" :src="tab.name.url"></iframe>
@@ -42,6 +46,7 @@
     export default {
     		props:{
     			height:0,
+				basedata:null
     		},
     		computed:{
     			contentHeight: function(){
