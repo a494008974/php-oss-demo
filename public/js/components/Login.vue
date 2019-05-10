@@ -186,6 +186,7 @@
         methods:{
             loginAction: function (event) {
 
+                location.href='admin';
             }
         }
     }

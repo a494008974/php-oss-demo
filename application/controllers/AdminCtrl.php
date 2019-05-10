@@ -34,7 +34,7 @@ class AdminCtrl extends CI_Controller {
 	}
 
 	public function login(){
-
+        $this->twig->view('welcome_message.php');
     }
 
     public function forget(){
@@ -42,7 +42,7 @@ class AdminCtrl extends CI_Controller {
     }
 
     public function register(){
-
+        $this->twig->view('welcome_message.php');
     }
 
 	public function admin()
