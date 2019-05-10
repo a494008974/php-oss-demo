@@ -1,7 +1,3 @@
-import jQuery from 'jquery';
-window.jQuery = jQuery;
-require('./bootstrap');
-
 import Vue from 'vue';
 import VueBus from 'vue-bus';
 

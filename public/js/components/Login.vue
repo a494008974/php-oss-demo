@@ -1,26 +1,26 @@
 <style>
     body{
-        background: url("../../images/bg_login.jpg") no-repeat fixed;
-        /* set background tensile */
         background-size: 100% 100%;
         -moz-background-size: 100% 100%;
         margin: 0;
         padding: 0;
+        background-color: #d4d4d4;
     }
 
     #content{
         background-color: rgba(255, 255, 255, 0.95);
         width: 440px;
         height: 320px;
-        border: 1px solid #000000;
+        border: 1px solid #b9b9b9;
         border-radius: 6px;
         display: block;
         position: absolute;
         left:50%;
-        top:45%;
+        top:40%;
         margin-left:-220px;
         margin-top:-160px;
         text-align: center;
+        box-shadow: 0 0 5px 0px #acacac;
     }
 
     .login-header{
@@ -49,7 +49,7 @@
 
     .login-input-box{
         margin-top: 12px;
-        width: 100%;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
         display: inline-block;
@@ -57,7 +57,7 @@
     }
 
     .login-input-box input{
-        width: 80%;
+        width: 85%;
         height: 45px;
         border: 1px solid #dcdcdc;
         border-radius: 4px;
@@ -65,62 +65,62 @@
     }
 
     .login-input-box input:hover{
-        border: 1px solid #ff7d0a;
+        border: 1px solid #1f5ea4;
     }
 
     .login-input-box input:after{
-        border: 1px solid #ff7d0a;
+        border: 1px solid #2d8cf0;
     }
 
     .login-input-box .icon{
         width: 28px;
-        margin: 12px;
+        margin: 10px;
         display: inline-block;
         position: absolute;
         text-align: center;
-        border-right: 1px solid #dcdcdc;
         box-shadow: 0 0 0px black;
+    }
+
+    .login-input-box .icon img{
+        width: 28px;
     }
 
     .remember-box{
         width: 80%;
         height: auto;
         margin-top: 12px;
+        margin-bottom: 5px;
         font-size: 12px;
         color: #8c8a8a;
         text-align: left;
         display: inline-block;
+        padding-left: 5px;
     }
 
     .login-button-box{
         margin-top: 12px;
-        width: 100%;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
         display: inline-block;
     }
 
     .login-button-box button{
-        background-color: #ff7d0a;
+        background-color: #2d8cf0;
         color: #ffffff;
         font-size: 16px;
-        width: 80%;
+        width: 100%;
         height: 40px;
-        border: 1px solid #ff7d0a;
+        border: 1px solid #2d8cf0;
         border-radius: 4px;
     }
 
     .login-button-box button:hover{
-        background-color: #ee7204;
+        background-color: #1f5ea4;
     }
 
     .login-button-box button:active{
-        background-color: #ee7204;
-    }
-
-    .logon-box{
-        margin-top: 10px;
-        text-align: center;
+        background-color: #2d8cf0;
     }
 
     .logon-box a{
@@ -131,11 +131,19 @@
     }
 
     .logon-box a:hover{
-        color: #ff7d0a;
+        color: #1f5ea4;
     }
 
     .logon-box a:active{
-        color: #ee7204;
+        color: #2d8cf0;
+    }
+
+    :focus {
+        outline: -webkit-focus-ring-color auto 5px;
+        outline-color: -webkit-focus-ring-color;
+        outline-style: auto;
+        outline-width: 2px;
+        border-radius: 4px;
     }
 </style>
 <template>
@@ -146,13 +154,13 @@
         <form>
             <div class="login-input-box">
                 <span class="icon">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <img src="../../images/username.png">
                 </span>
                 <input type="text" :placeholder=login.language.login_placeholder_username>
             </div>
             <div class="login-input-box">
                 <span class="icon">
-                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    <img src="../../images/password.png">
                 </span>
                 <input type="password" :placeholder=login.language.login_placeholder_password>
             </div>
@@ -165,10 +173,7 @@
         <div class="login-button-box">
             <button v-on:click=loginAction>{{login.language.login_login}}</button>
         </div>
-        <div class="logon-box">
-            <a href="">{{login.language.login_forget}}</a>
-            <a href="">{{login.language.login_register}}</a>
-        </div>
+
 
     </div>
 </template>
@@ -186,7 +191,7 @@
         methods:{
             loginAction: function (event) {
 
-                location.href='admin';
+                location.href='http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/admin';
             }
         }
     }

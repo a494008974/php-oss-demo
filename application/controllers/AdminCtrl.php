@@ -45,6 +45,10 @@ class AdminCtrl extends CI_Controller {
         $this->twig->view('welcome_message.php');
     }
 
+    public function home(){
+        $this->twig->view('welcome_message.php');
+    }
+
 	public function admin()
 	{
 	    $baseurl = base_url();
@@ -137,7 +141,7 @@ class AdminCtrl extends CI_Controller {
         );
         $basedata = array(
           'base_url' => $baseurl,
-          'base_index' => 'index.php/AdminCtrl/index'
+          'base_index' => 'index.php/AdminCtrl/home'
         );
         $data['title'] = "后台管理系统";
         $data['content'] = json_encode($content);
