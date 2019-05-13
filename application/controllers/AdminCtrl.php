@@ -34,11 +34,23 @@ class AdminCtrl extends CI_Controller {
 	}
 
 	public function login(){
-        $this->twig->view('welcome_message.php');
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $this->load->database();
+        $query = $this->db->query("SELECT * FROM `user` WHERE 1");
+        
     }
 
     public function forget(){
+        $this->load->database();
+        $query = $this->db->query("SELECT * FROM `user` WHERE 1");
 
+        foreach ($query->result() as $row)
+        {
+            echo $row->id . ' == ';
+            echo $row->username . ' == ';
+            echo $row->password . ' == <br>';
+        }
     }
 
     public function register(){
@@ -51,93 +63,32 @@ class AdminCtrl extends CI_Controller {
 
 	public function admin()
 	{
+        $this->load->database();
+        $arr = array();
+        $query = $this->db->query("SELECT * FROM `manager` WHERE level=1");
+        foreach ($query->result() as $row)
+        {
+            $arr1 = array();
+            $query1 = $this->db->query("SELECT * FROM `manager` WHERE level=2 and parent=".$row->Id);
+            foreach ($query1->result() as $row1)
+            {
+                $arr2 = array();
+                $query2 = $this->db->query("SELECT * FROM `manager` WHERE level=3 and parent=".$row1->Id);
+                foreach ($query2->result() as $row2)
+                {
+                    $arr2[] = array('Id'=>$row2->Id,'title'=>$row2->title,'level'=>$row2->level,'parent'=>$row2->parent,'url'=>$row2->url,'icon'=>$row2->icon);
+                }
+                $arr1[] = array('Id'=>$row1->Id,'title'=>$row1->title,'level'=>$row1->level,'parent'=>$row1->parent,'url'=>$row1->url,'icon'=>$row1->icon,'submenu'=>$arr2);
+            }
+            $arr[] = array('Id'=>$row->Id,'title'=>$row->title,'level'=>$row->level,'parent'=>$row->parent,'url'=>$row->url,'icon'=>$row->icon,'submenu'=>$arr1);
+
+        }
+
 	    $baseurl = base_url();
         $content = array(
-            'active' => 1,
+            'active' => $arr[0]['Id'],
             'theme' => 'primary',
-            'data' => array(
-                array('name' => 1,'type' => 'ios-paper', 'title' => '内容管理','submenu' => array(
-                    array(
-                        'name' => 1,'type' => 'ios-paper', 'title' => '我的收藏', 'submenu' =>array(
-                        array('name' => 1,'title' => 'JavaScript教程','url' =>'https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000'),
-                        array('name' => 2,'title' => 'IVIEW','url' =>'https://www.iviewui.com/'),
-                        array('name' => 3,'title' => 'CODEKK','url' =>'http://p.codekk.com/'),
-                        array('name' => 4,'title' => 'CSS3手册','url' =>'http://www.phpstudy.net/css3/'),
-                        array('name' => 5,'title' => '内容管理','url' =>$baseurl.'index.php/'.'AdminCtrl/admin'),
-                        array('name' => 6,'title' => '内容管理','url' =>'http://www.baidu.com')
-                    )
-                    ),
-                    array(
-                        'name' => 2,'type' => 'ios-paper', 'title' => '内容管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 2,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 3,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 4,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 5,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 6,'title' => '内容管理','url' =>'http://www.baidu.com')
-                    )
-                    ),
-                    array(
-                        'name' => 3,'type' => 'ios-paper', 'title' => '内容管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 2,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 3,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 4,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 5,'title' => '内容管理','url' =>'http://www.baidu.com'),
-                        array('name' => 6,'title' => '内容管理','url' =>'http://www.baidu.com')
-                    )
-                    ),
-                )),
-                array('name' => 2,'type' => 'ios-people', 'title' => '用户管理','submenu' => array(
-                    array(
-                        'name' => 1,'type' => 'ios-paper', 'title' => '内容bbbb管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理')
-                    )
-                    ),
-                )),
-                array('name' => 3,'type' => 'stats-bars', 'title' => '统计分析','submenu' => array(
-                    array(
-                        'name' => 1,'type' => 'ios-paper', 'title' => '内容管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理')
-                    )
-                    ),
-                )),
-                array('name' => 4,'type' => 'ios-paper', 'title' => '综合设置','submenu' => array(
-                    array(
-                        'name' => 1,'type' => 'ios-paper', 'title' => '内容管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理')
-                    )
-                    ),
-                )),
-                array('name' => 5,'type' => 'ios-paper-outline', 'title' => '统计分析','submenu' => array(
-                    array(
-                        'name' => 1,'type' => 'ios-paper', 'title' => '内容管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理')
-                    )
-                    ),
-                )),
-                array('name' => 6,'type' => 'ios-clock', 'title' => '内容管理','submenu' => array(
-                    array(
-                        'name' => 1,'type' => 'ios-paper', 'title' => '内容管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理')
-                    )
-                    ),
-                )),
-                array('name' => 7,'type' => 'ios-paper', 'title' => '综合设置','submenu' => array(
-                    array(
-                        'name' => 1,'type' => 'ios-paper', 'title' => '内容管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理')
-                    )
-                    ),
-                )),
-                array('name' => 8,'type' => 'ios-people', 'title' => '用户管理','submenu' => array(
-                    array(
-                        'name' => 1,'type' => 'ios-paper', 'title' => '内容管理', 'submenu' =>array(
-                        array('name' => 1,'title' => '内容管理')
-                    )
-                    ),
-                ))
-            )
+            'data' => $arr
         );
         $basedata = array(
           'base_url' => $baseurl,
@@ -146,7 +97,7 @@ class AdminCtrl extends CI_Controller {
         $data['title'] = "后台管理系统";
         $data['content'] = json_encode($content);
         $data['basedata'] = json_encode($basedata);;
-
         $this->twig->view('admin.html',$data);
+
 	}
 }

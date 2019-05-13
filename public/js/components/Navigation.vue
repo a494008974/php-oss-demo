@@ -40,9 +40,9 @@
         </div>
         <div class="layout-menu">
             <Menu mode="horizontal" :theme="content.theme" :active-name="content.active" @on-select="menuClick">
-                <Menu-item v-for="item in content.data" :key="item.name" :name="item.name">
-                    <Icon :type="item.type"></Icon>
-                    {{item.title}}
+                <Menu-item v-for="item in content.data" :key="item.Id" :name="item.Id">
+                    <Icon :type="item.icon"></Icon>
+                    {{item.title}}{{item.Id}}
                 </Menu-item>
             </Menu>
         </div>
@@ -64,7 +64,7 @@
             },
             emitActive: function(name){
                 for (var i in this.content.data) {
-                    if(this.content.data[i].name == name){
+                    if(this.content.data[i].Id == name){
                         this.$bus.emit('selectMenu', this.content.data[i]);
                         break;
                     }

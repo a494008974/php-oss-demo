@@ -179,6 +179,8 @@
 </template>
 
 <script>
+
+
     export default {
         props:{
             login:null
@@ -190,8 +192,17 @@
         },
         methods:{
             loginAction: function (event) {
-
-                location.href='http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/admin';
+                var params = new URLSearchParams();
+                params.append('username', 'zhou');
+                params.append('password', '1234');
+                this.$axios.post("http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/login",params).then(res=>{
+                    console.log(res.data);
+                    if(1){
+                        //location.href = 'http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/admin'
+                    }else{
+                        //alert('登录失败');
+                    }
+                });
             }
         }
     }

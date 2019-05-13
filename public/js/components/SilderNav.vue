@@ -3,18 +3,18 @@
 </style>
 <template>
 		<div>
-			<Menu theme="dark" active-name="1-1-1" :open-names="['1-1','1-2','1-3']" width="300px" @on-select="subMenuClick">
-                <Submenu v-for="item in content.submenu" :key="content.name+'-'+item.name" :name="content.name+'-'+item.name">
+			<Menu theme="dark" width="300px" :open-names="openNames" @on-select="subMenuClick">
+                <Submenu v-for="item in content.submenu" :key="content.Id+'-'+item.Id" :name="content.Id+'-'+item.Id">
                     <template slot="title">
-                        <Icon :type="item.type"></Icon>
+                        <Icon :type="item.icon"></Icon>
+						{{content.Id+'-'+item.Id}}
                         {{item.title}}
                     </template>
 					<Menu-item  v-for="subitem in item.submenu"
-								:key="content.name+'-'+item.name+'-'+subitem.name"
-								:name="content.name+'-'+item.name+'-'+subitem.name">
-
+								:key="content.Id+'-'+item.Id+'-'+subitem.Id"
+								:name="content.Id+'-'+item.Id+'-'+subitem.Id">
+						<Icon :type="subitem.icon"></Icon>
 						{{subitem.title}}
-
 					</Menu-item>
                 </Submenu>
             </Menu>
@@ -24,11 +24,16 @@
 
     export default {
 		props:{
-			content:null
+			content:null,
+			openNames: {
+				type: Array,
+				default: () => [
+					'1-3',
+				]
+			}
 		},
 		data: function() {
             return {
-
             }
         },
 		methods: {
@@ -40,9 +45,9 @@
 				strs=name.split("-"); //字符分割
 				if(strs.length >= 3){
 					for (var i in this.content.submenu) {
-						if(this.content.submenu[i].name == strs[1]){
+						if(this.content.submenu[i].Id == strs[1]){
 							for (var j in this.content.submenu[i].submenu){
-								if(this.content.submenu[i].submenu[j].name == strs[2]){
+								if(this.content.submenu[i].submenu[j].Id == strs[2]){
 									this.$bus.emit('selectSubActive', this.content.submenu[i].submenu[j],name);
 									break;
 								}

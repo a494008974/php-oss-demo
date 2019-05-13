@@ -1,14 +1,19 @@
 <style>
 	.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab {
 		margin: 0;
-		margin-right: 0px;
-		height: 31px;
+		margin-right: 1px;
+		height: 28px;
 		padding: 5px 16px 4px;
 		border: 1px solid #dddee1;
 		border-bottom: 0;
-		border-radius: 0px 0px 0 0;
 		transition: all .3s ease-in-out;
 		background: #f8f8f9;
+	}
+
+	.ivu-tabs-nav {
+		bottom: 0px;
+		margin-left: 4px;
+		position: absolute;
 	}
 
 	.ivu-tabs-bar {
