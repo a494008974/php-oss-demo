@@ -19,8 +19,8 @@
          background: #303e4f;
          width:300px;
          height:60px;
+         padding-top: 10px;
          box-sizing:border-box;
-         border: 1px solid #6b6b6b;
      }
      .layout-menu {
           position:absolute;
@@ -30,13 +30,20 @@
           overflow:hidden;
           height:60px;
      }
+    .layout-logo h1 {
+        font-size: 26px;
+        height: 60px;
+        font-weight: bold;
+        display: block;
+        text-align: center;
+    }
 </style>
 
 <template>
 
     <div class="layout-navigation">
         <div class="layout-logo">
-
+            <h1>BSW战队管理系统</h1>
         </div>
         <div class="layout-menu">
             <Menu mode="horizontal" :theme="content.theme" :active-name="content.active" @on-select="menuClick">

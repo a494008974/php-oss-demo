@@ -37,22 +37,18 @@ export default {
                 {
                     title: 'Name',
                     key: 'name',
-                    width: 150,
                 },
                 {
                     title: 'Age',
                     key: 'age',
-                    width: 100,
                 },
                 {
                     title: 'Province',
                     key: 'province',
-                    width: 150,
                 },
                 {
                     title: 'City',
                     key: 'city',
-                    width: 150,
                 },
                 {
                     title: 'Address',
@@ -61,12 +57,10 @@ export default {
                 {
                     title: 'Postcode',
                     key: 'zip',
-                    width: 100,
                 },
                 {
                     title: 'Action',
                     key: 'action',
-                    width: 150,
                     render: (h, params) => {
                         return h('div', [
                             h('Button', {
@@ -140,6 +134,38 @@ export default {
                     address: 'Sydney No. 1 Lake Park',
                     province: 'Australian',
                     city: 'Sydney',
+                    zip: 100000
+                },
+                {
+                    name: 'Jon Snow',
+                    age: 26,
+                    address: 'Ottawa No. 2 Lake Park',
+                    province: 'Canada',
+                    city: 'Ottawa',
+                    zip: 100000
+                },
+                {
+                    name: 'Joe Black',
+                    age: 30,
+                    address: 'Sydney No. 1 Lake Park',
+                    province: 'Australian',
+                    city: 'Sydney',
+                    zip: 100000
+                },
+                {
+                    name: 'Jon Snow',
+                    age: 26,
+                    address: 'Ottawa No. 2 Lake Park',
+                    province: 'Canada',
+                    city: 'Ottawa',
+                    zip: 100000
+                },
+                {
+                    name: 'Jon Snow',
+                    age: 26,
+                    address: 'Ottawa No. 2 Lake Park',
+                    province: 'Canada',
+                    city: 'Ottawa',
                     zip: 100000
                 },
                 {

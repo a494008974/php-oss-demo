@@ -77,7 +77,7 @@ $config['url_suffix'] = '';
 |
 */
 $config['language']	= 'english';
-
+$config['lang']	= 'ch';
 /*
 |--------------------------------------------------------------------------
 | Default Character Set

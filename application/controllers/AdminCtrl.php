@@ -20,6 +20,7 @@ class AdminCtrl extends CI_Controller {
 	 */
 	public function index($lang='ch')
 	{
+        $lang = $this->config->item('lang');
 	    if($lang == 'ch'){
             $this->lang->load('login','simplified-chinese');
             $data['title'] = $this->lang->line('login_title');
@@ -33,24 +34,32 @@ class AdminCtrl extends CI_Controller {
         $this->twig->view('login.html',$data);
 	}
 
-	public function login(){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $this->load->database();
-        $query = $this->db->query("SELECT * FROM `user` WHERE 1");
-        
+	public function login($lang = 'ch'){
+	    if($_POST){
+            $this->load->model('User_model');
+            if($_POST['username']){
+                $author = $this->User_model->select_entry($_POST['username']);
+                if($author){
+                    $password = $_POST['password'];
+                    if(md5($password) == $author[0]->password){
+                        $result = array('status'=>200,'msg'=>'登录成功');
+                    }else{
+                        $result = array('status'=>201,'msg'=>'登录失败--密码不对！');
+                    }
+                }else{
+                    $result = array('status'=>201,'msg'=>'登录失败--帐号不对！');
+                }
+            }else{
+                $result = array('status'=>201,'msg'=>'登录失败--帐号或密码不对！');
+            }
+            echo json_encode($result);
+        }else{
+	        $this->index($lang);
+        }
     }
 
     public function forget(){
-        $this->load->database();
-        $query = $this->db->query("SELECT * FROM `user` WHERE 1");
-
-        foreach ($query->result() as $row)
-        {
-            echo $row->id . ' == ';
-            echo $row->username . ' == ';
-            echo $row->password . ' == <br>';
-        }
+        dump(md5('abcd'));
     }
 
     public function register(){
@@ -89,13 +98,13 @@ class AdminCtrl extends CI_Controller {
         $content = array(
             'active' => $arr[0]['Id'],
             'theme' => 'primary',
-            'data' => $arr
+            'data' => $arr,
         );
 
         $basedata = array(
           'label' => '首页',
           'base_url' => $baseurl,
-          'base_index' => 'index.php/AdminCtrl/sysmenu'
+          'base_index' => 'index.php'
         );
 
         $data['title'] = "后台管理系统";

@@ -63,6 +63,7 @@
         border: 1px solid #dcdcdc;
         border-radius: 4px;
         padding-left: 45px;
+        font-size: 14px;
     }
 
     .login-input-box input:hover{
@@ -75,7 +76,7 @@
 
     .login-input-box .icon{
         width: 28px;
-        margin: 10px;
+        margin: 8px;
         display: inline-block;
         position: absolute;
         text-align: center;
@@ -157,51 +158,46 @@
                 <span class="icon">
                     <img src="../../images/username.png">
                 </span>
-                <input type="text" :placeholder=login.language.login_placeholder_username>
+                <input type="text" :placeholder=login.language.login_placeholder_username ref="username">
             </div>
             <div class="login-input-box">
                 <span class="icon">
                     <img src="../../images/password.png">
                 </span>
-                <input type="password" :placeholder=login.language.login_placeholder_password>
+                <input type="password" :placeholder=login.language.login_placeholder_password ref="password">
             </div>
         </form>
         <div class="remember-box">
             <label>
-                <input type="checkbox">&nbsp;{{login.language.login_remember}}
+                <input type="checkbox" ref="remember">&nbsp;{{login.language.login_remember}}
             </label>
         </div>
         <div class="login-button-box">
             <button v-on:click=loginAction>{{login.language.login_login}}</button>
         </div>
-
-
     </div>
 </template>
 
 <script>
-
-
     export default {
         props:{
             login:null
         },
         data: function() {
             return {
-
             }
         },
         methods:{
             loginAction: function (event) {
                 var params = new URLSearchParams();
-                params.append('username', 'zhou');
-                params.append('password', '1234');
+                params.append('username', this.$refs.username.value);
+                params.append('password', this.$refs.password.value);
                 this.$axios.post("http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/login",params).then(res=>{
-                    console.log(res.data);
-                    if(1){
-                        //location.href = 'http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/admin'
+                    // console.log(res.data);
+                    if(res.data.status == 200){
+                        location.href = 'http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/admin'
                     }else{
-                        //alert('登录失败');
+                        this.$Message.info(res.data.msg);
                     }
                 });
             }
