@@ -1,13 +1,17 @@
-import jQuery from 'jquery';
-window.jQuery = jQuery;
-require('./bootstrap');
+import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
-import Vue from 'vue';
-import Vuex from 'vuex';
-Vue.use(Vuex);
-window.Vue = Vue;
+$("#app").css("background-color","yellow");
+
+import Index from './components/Index.vue';
+Vue.component('Index',Index);
+var app = new Vue({
+    el: '#app',
+    delimiters : ['[[', ']]'],
+    data: {
+        msg: 'Hello Vue!'
+    }
+})
 
 
-const app = new Vue({
-    el: '#app'
-});

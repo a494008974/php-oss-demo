@@ -7,15 +7,22 @@ module.exports = {
   entry:  {
 		index:'./public/js/index.js',
         login:'./public/js/login.js',
-		admin:'./public/js/admin.js'
+        sysmenu:'./public/js/sysmenu.js',
+		admin:'./public/js/admin.js',
+        common:'./public/js/common.js'
+        // vendor: ['vue', 'vue-bus', 'axios','jquery']
 	  },
   output: {
-    path: path.resolve(__dirname, './public/dist'),
+    path: path.resolve(__dirname, './public/dist/'),
     publicPath: '/php-oss-demo/public/dist/',
-    filename: '[name].bundle.js'
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
   },
   plugins: [
-	 new CleanWebpackPlugin(['./public/dist']),
+	 new CleanWebpackPlugin(['./public/dist/']),
+     // new webpack.ProvidePlugin({
+     //     names: ['vendor'],
+     // }),
      new HtmlWebpackPlugin({
        title: 'Output Management'
      }),
@@ -23,11 +30,20 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
-    })
+    }),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //     name:['jquery','vue'],//对应入口文件的jquery(单独抽离)
+      //     filename:'[name].bundle.js',//抽离到哪里
+      //     minChunks:2//抽离几个文件
+      // }),//优化
    ],
+    externals: {
+        // vue: 'Vue',
+    },
    resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+      'vue$': 'vue/dist/vue.esm.js', // 'vue/dist/vue.common.js' for webpack 1
+
     }
    },
    module: {

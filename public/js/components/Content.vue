@@ -71,10 +71,10 @@
 		  }
 		},
 		mounted: function(){
-			this.contentHeight.height = (document.body.clientHeight - 60);
+			this.contentHeight.height = (window.screen.height - 60);
 			const that = this;
 			window.onresize = function temp() {
-				that.contentHeight.height = (document.body.clientHeight - 60);
+				that.contentHeight.height = (window.screen.height - 60);
 			};
 		}
     }

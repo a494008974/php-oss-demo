@@ -1,11 +1,3 @@
-import Vue from 'vue';
-import VueBus from 'vue-bus';
-
-Vue.use(VueBus);
-window.Vue = Vue;
-
-require('./iview');
-
 import Navigation from './components/Navigation.vue';
 Vue.component('znavigation',Navigation);
 

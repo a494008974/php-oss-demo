@@ -10,7 +10,8 @@
     #content{
         background-color: rgba(255, 255, 255, 0.95);
         width: 440px;
-        height: 320px;
+        height: auto;
+        padding: 30px;
         border: 1px solid #b9b9b9;
         border-radius: 6px;
         display: block;
@@ -57,7 +58,7 @@
     }
 
     .login-input-box input{
-        width: 85%;
+        width: 100%;
         height: 45px;
         border: 1px solid #dcdcdc;
         border-radius: 4px;

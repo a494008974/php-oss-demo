@@ -38,7 +38,7 @@
 <template>
 		<div>
 			<Tabs type="card" closable @on-tab-remove="handleTabRemove" :value="value" :animated="false">
-				<Tab-pane label="首页"  name="index" v-if="showIndex">
+				<Tab-pane :label="basedata.label"  name="index" v-if="showIndex">
 					<iframe class="layout-iframe" :style="contentHeight" :src=basedata.base_url+basedata.base_index></iframe>
 				</Tab-pane>
 				<Tab-pane v-for="tab in tabs" :key="tab.id" :name="tab.id" :label="tab.name.title" v-if="tab.visable">

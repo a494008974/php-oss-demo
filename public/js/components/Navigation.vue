@@ -42,7 +42,7 @@
             <Menu mode="horizontal" :theme="content.theme" :active-name="content.active" @on-select="menuClick">
                 <Menu-item v-for="item in content.data" :key="item.Id" :name="item.Id">
                     <Icon :type="item.icon"></Icon>
-                    {{item.title}}{{item.Id}}
+                    {{item.title}}
                 </Menu-item>
             </Menu>
         </div>

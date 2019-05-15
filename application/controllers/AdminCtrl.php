@@ -65,39 +65,47 @@ class AdminCtrl extends CI_Controller {
 	{
         $this->load->database();
         $arr = array();
-        $query = $this->db->query("SELECT * FROM `manager` WHERE level=1");
+        $query = $this->db->query("SELECT * FROM `manager` WHERE parent=0");
         foreach ($query->result() as $row)
         {
             $arr1 = array();
-            $query1 = $this->db->query("SELECT * FROM `manager` WHERE level=2 and parent=".$row->Id);
+            $query1 = $this->db->query("SELECT * FROM `manager` WHERE parent=".$row->Id);
             foreach ($query1->result() as $row1)
             {
                 $arr2 = array();
-                $query2 = $this->db->query("SELECT * FROM `manager` WHERE level=3 and parent=".$row1->Id);
+                $query2 = $this->db->query("SELECT * FROM `manager` WHERE parent=".$row1->Id);
                 foreach ($query2->result() as $row2)
                 {
-                    $arr2[] = array('Id'=>$row2->Id,'title'=>$row2->title,'level'=>$row2->level,'parent'=>$row2->parent,'url'=>$row2->url,'icon'=>$row2->icon);
+                    $arr2[] = array('Id'=>$row2->Id,'title'=>$row2->title,'parent'=>$row2->parent,'url'=>$row2->url,'icon'=>$row2->icon);
                 }
-                $arr1[] = array('Id'=>$row1->Id,'title'=>$row1->title,'level'=>$row1->level,'parent'=>$row1->parent,'url'=>$row1->url,'icon'=>$row1->icon,'submenu'=>$arr2);
+                $arr1[] = array('Id'=>$row1->Id,'title'=>$row1->title,'parent'=>$row1->parent,'url'=>$row1->url,'icon'=>$row1->icon,'submenu'=>$arr2);
             }
-            $arr[] = array('Id'=>$row->Id,'title'=>$row->title,'level'=>$row->level,'parent'=>$row->parent,'url'=>$row->url,'icon'=>$row->icon,'submenu'=>$arr1);
+            $arr[] = array('Id'=>$row->Id,'title'=>$row->title,'parent'=>$row->parent,'url'=>$row->url,'icon'=>$row->icon,'submenu'=>$arr1);
 
         }
 
 	    $baseurl = base_url();
+
         $content = array(
             'active' => $arr[0]['Id'],
             'theme' => 'primary',
             'data' => $arr
         );
+
         $basedata = array(
+          'label' => '首页',
           'base_url' => $baseurl,
-          'base_index' => 'index.php/AdminCtrl/home'
+          'base_index' => 'index.php/AdminCtrl/sysmenu'
         );
+
         $data['title'] = "后台管理系统";
         $data['content'] = json_encode($content);
         $data['basedata'] = json_encode($basedata);;
         $this->twig->view('admin.html',$data);
 
 	}
+
+	public function sysmenu(){
+        $this->twig->view('sysmenu.html');
+    }
 }

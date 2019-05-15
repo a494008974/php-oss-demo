@@ -3,11 +3,12 @@
 </style>
 <template>
 		<div>
-			<Menu theme="dark" width="300px" :open-names="openNames" @on-select="subMenuClick">
-                <Submenu v-for="item in content.submenu" :key="content.Id+'-'+item.Id" :name="content.Id+'-'+item.Id">
+			<Menu theme="dark" width="300px" @on-select="subMenuClick">
+                <Submenu v-for="item in content.submenu"
+						 :key="content.Id+'-'+item.Id"
+						 :name="content.Id+'-'+item.Id">
                     <template slot="title">
                         <Icon :type="item.icon"></Icon>
-						{{content.Id+'-'+item.Id}}
                         {{item.title}}
                     </template>
 					<Menu-item  v-for="subitem in item.submenu"
@@ -25,12 +26,6 @@
     export default {
 		props:{
 			content:null,
-			openNames: {
-				type: Array,
-				default: () => [
-					'1-3',
-				]
-			}
 		},
 		data: function() {
             return {

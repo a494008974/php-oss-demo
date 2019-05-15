@@ -20,7 +20,7 @@ class IndexCtrl extends CI_Controller {
 	 */
 	public function index()
 	{
-        $this->twig->view('welcome_message.php');
+        $this->twig->view('index.html');
 	}
 	
 	public function vuex()
