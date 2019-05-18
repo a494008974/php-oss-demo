@@ -199,6 +199,8 @@
                     }else{
                         this.$Message.info(res.data.msg);
                     }
+                }).catch(function (error) {
+                    console.log(error);
                 });
             }
         }

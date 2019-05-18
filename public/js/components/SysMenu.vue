@@ -14,52 +14,83 @@
 </style>
 <template>
     <div>
+
         <div style="margin-top: 20px">
-            <Input type="text" placeholder="name">
+            <Input type="text">
                 <Icon type="ios-search" slot="prepend"></Icon>
             </Input>
             <Button type="primary" icon="ios-search">搜索</Button>
-            <Button type="primary" icon="ios-plus">全部</Button>
-            <Button type="primary" icon="ios-send">新增</Button>
+            <Button type="primary" icon="ios-apps-outline">全部</Button>
+            <Button type="primary" icon="ios-add-circle-outline" @click="addmenu = true">新增</Button>
+            <Modal
+                    title="新增菜单"
+                    v-model="addmenu"
+                    @on-ok="onok"
+                    class-name="vertical-center-modal">
+
+                <Form :model="formItem" :label-width="80">
+                    <FormItem label="TITLE">
+                        <Input ref="title" v-model="formItem.title" placeholder="Enter something..."></Input>
+                    </FormItem>
+                    <FormItem label="ICON">
+                        <Input ref="icon" v-model="formItem.icon" placeholder="Enter something..."></Input>
+                    </FormItem>
+                    <FormItem label="URL">
+                        <Input ref="url" v-model="formItem.url" placeholder="Enter something..."></Input>
+                    </FormItem>
+                    <FormItem label="PARENT">
+                        <Input ref="parent" v-model="formItem.parent" placeholder="Enter something..."></Input>
+                    </FormItem>
+                </Form>
+
+            </Modal>
         </div>
-        <Table width="100%" :height="contentHeight.height" border :columns="columns2" :data="data4" style="margin: 20px"></Table>
+
+        <Table width="100%" :height="contentHeight.height" border :columns="columns" :data="contentNew" style="margin: 20px"></Table>
         <Page :total="100" style="position: absolute;right: 20px"/>
     </div>
 </template>
 <script>
 export default {
-    data () {
+    props:{
+        content:null
+    },
+    data:function () {
         return {
             contentHeight: {
                 height: 0
             },
-            columns2: [
+            contentNew: this.content,
+            addmenu: false,
+            formItem: {
+                title: '',
+                icon: '',
+                url: '',
+                parent: '',
+            },
+            columns: [
                 {
-                    title: 'Name',
-                    key: 'name',
+                    title: 'ID',
+                    key: 'Id',
                 },
                 {
-                    title: 'Age',
-                    key: 'age',
+                    title: 'TITLE',
+                    key: 'title',
                 },
                 {
-                    title: 'Province',
-                    key: 'province',
+                    title: 'ICON',
+                    key: 'icon',
                 },
                 {
-                    title: 'City',
-                    key: 'city',
+                    title: 'URL',
+                    key: 'url',
                 },
                 {
-                    title: 'Address',
-                    key: 'address',
+                    title: 'PARENT',
+                    key: 'parent',
                 },
                 {
-                    title: 'Postcode',
-                    key: 'zip',
-                },
-                {
-                    title: 'Action',
+                    title: 'ACTION',
                     key: 'action',
                     render: (h, params) => {
                         return h('div', [
@@ -78,17 +109,26 @@ export default {
                         ]);
                     }
                 }
-            ],
-            data4: [
-                {
-                    name: 'John Brown',
-                    age: 18,
-                    address: 'New York No. 1 Lake Park',
-                    province: 'America',
-                    city: 'New York',
-                    zip: 100000
-                }
             ]
+        }
+    },
+    methods: {
+        onok: function(){
+            var params = new URLSearchParams();
+            params.append('title', this.$refs.title.value);
+            params.append('icon', this.$refs.icon.value);
+            params.append('url', this.$refs.url.value);
+            params.append('parent', this.$refs.parent.value);
+            this.$axios.post("http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/insertMenu",params).then(res=>{
+                console.log(res.data);
+                if(res.data.status == 200){
+                    this.contentNew.push(res.data.msg);
+                }else {
+                    this.$Message.info(res.data.msg);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
     mounted: function(){

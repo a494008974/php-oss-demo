@@ -1,34 +1,4 @@
 <style>
-	/*.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab {*/
-		/*margin: 0;*/
-		/*margin-right: 1px;*/
-		/*height: 28px;*/
-		/*padding: 5px 16px 4px;*/
-		/*border: 1px solid #dddee1;*/
-		/*border-bottom: 0;*/
-		/*transition: all .3s ease-in-out;*/
-		/*background: #f8f8f9;*/
-	/*}*/
-
-	/*.ivu-tabs-nav .ivu-tabs-tab{*/
-		/*height: auto;*/
-	/*}*/
-
-	/*.ivu-tabs-nav {*/
-		/*bottom: 0px;*/
-		/*margin-left: 4px;*/
-		/*position: absolute;*/
-	/*}*/
-
-	/*.ivu-tabs-bar {*/
-		/*border-bottom: 1px solid #dddee1;*/
-		/*margin-bottom: 0px;*/
-	/*}*/
-
-	/*#app > div.layout_content > div.layout_main_content > div > div > div.ivu-tabs-bar > div > div > div > div > div:nth-child(2) > i{*/
-		/*display: none;*/
-	/*}*/
-
 	.ivu-tabs-nav {
 		height: 28px;
 		margin-top: 4px;
@@ -39,8 +9,20 @@
 		height: auto;
 	}
 
+	.ivu-tabs-bar {
+		margin-bottom: 0px;
+	}
+
 	div.ivu-tabs-bar > div > div > div > div > div:nth-child(2) > i{
 		display: none;
+	}
+
+	i.ivu-icon.ivu-icon-ios-arrow-back {
+		margin-top: 10px;
+	}
+
+	i.ivu-icon.ivu-icon-ios-arrow-forward {
+		margin-top: 10px;
 	}
 
 	.layout-iframe{
@@ -57,7 +39,7 @@
 		<div>
 			<Tabs type="card" closable @on-tab-remove="handleTabRemove" :value="value" :animated="false">
 				<Tab-pane :label="basedata.label"  name="index" v-if="showIndex">
-					<iframe class="layout-iframe" :style="contentHeight" :src=basedata.base_url+basedata.base_index></iframe>
+					<iframe class="layout-iframe" :style="contentHeight" :src=basedata.base_url></iframe>
 				</Tab-pane>
 				<Tab-pane v-for="tab in tabs" :key="tab.id" :name="tab.id" :label="tab.name.title" v-if="tab.visable">
 					<iframe class="layout-iframe" :style="contentHeight" :src="tab.name.url"></iframe>

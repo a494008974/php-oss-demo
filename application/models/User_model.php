@@ -7,39 +7,26 @@
  */
 class User_model extends CI_Model {
 
-    public $Id;
-    public $username;
-    public $password;
-    public $email;
+    public $table = 'user';
 
-    public function get_last_ten_entries()
+    public function insert($entry)
     {
-        $query = $this->db->query('SELECT * FROM user');
-        return $query->result();
+        $this->db->insert($this->table, $entry);
+        return $this->db->insert_id($this->table);
     }
 
-    public function insert_entry()
+    public function delete($entry)
     {
-        $this->title    = $_POST['title']; // please read the below note
-        $this->content  = $_POST['content'];
-        $this->date = time();
-
-        $this->db->insert('user', $this);
+        $this->db->delete($this->table,array('Id' => $entry['Id']));
     }
 
-    public function update_entry()
+    public function update($entry)
     {
-        $this->title    = $_POST['title'];
-        $this->content  = $_POST['content'];
-        $this->date = time();
-
-        $this->db->update('user', $this, array('id' => $_POST['id']));
+        $this->db->update($this->table, $entry, array('Id' => $entry['Id']));
     }
 
-    public function select_entry($username){
-        $query = $this->db->select('*')
-            ->where('username',$username)
-            ->get('user');
+    public function select($entry){
+        $query = $this->db->select('*')->where('username',$entry['username'])->get('user');
         return $query->result();
     }
 }

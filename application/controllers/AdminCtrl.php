@@ -36,12 +36,10 @@ class AdminCtrl extends CI_Controller {
 
 	public function login($lang = 'ch'){
 	    if($_POST){
-            $this->load->model('User_model');
             if($_POST['username']){
-                $author = $this->User_model->select_entry($_POST['username']);
+                $author = $this->user->select($_POST);
                 if($author){
-                    $password = $_POST['password'];
-                    if(md5($password) == $author[0]->password){
+                    if(md5($_POST['password']) == $author[0]->password){
                         $result = array('status'=>200,'msg'=>'登录成功');
                     }else{
                         $result = array('status'=>201,'msg'=>'登录失败--密码不对！');
@@ -72,20 +70,20 @@ class AdminCtrl extends CI_Controller {
 
 	public function admin()
 	{
-        $this->load->database();
+        $baseurl = base_url().'index.php';
         $arr = array();
-        $query = $this->db->query("SELECT * FROM `manager` WHERE parent=0");
-        foreach ($query->result() as $row)
+        $result = $this->manager->select(array('parent'=>0));
+        foreach ($result as $row)
         {
             $arr1 = array();
-            $query1 = $this->db->query("SELECT * FROM `manager` WHERE parent=".$row->Id);
-            foreach ($query1->result() as $row1)
+            $result1 = $this->manager->select(array('parent'=>$row->Id));
+            foreach ($result1 as $row1)
             {
                 $arr2 = array();
-                $query2 = $this->db->query("SELECT * FROM `manager` WHERE parent=".$row1->Id);
-                foreach ($query2->result() as $row2)
+                $result2 = $this->manager->select(array('parent'=>$row1->Id));
+                foreach ($result2 as $row2)
                 {
-                    $arr2[] = array('Id'=>$row2->Id,'title'=>$row2->title,'parent'=>$row2->parent,'url'=>$row2->url,'icon'=>$row2->icon);
+                    $arr2[] = array('Id'=>$row2->Id,'title'=>$row2->title,'parent'=>$row2->parent,'url'=>$baseurl.$row2->url,'icon'=>$row2->icon);
                 }
                 $arr1[] = array('Id'=>$row1->Id,'title'=>$row1->title,'parent'=>$row1->parent,'url'=>$row1->url,'icon'=>$row1->icon,'submenu'=>$arr2);
             }
@@ -93,7 +91,6 @@ class AdminCtrl extends CI_Controller {
 
         }
 
-	    $baseurl = base_url();
 
         $content = array(
             'active' => $arr[0]['Id'],
@@ -104,7 +101,6 @@ class AdminCtrl extends CI_Controller {
         $basedata = array(
           'label' => '首页',
           'base_url' => $baseurl,
-          'base_index' => 'index.php'
         );
 
         $data['title'] = "后台管理系统";
@@ -115,6 +111,21 @@ class AdminCtrl extends CI_Controller {
 	}
 
 	public function sysmenu(){
-        $this->twig->view('sysmenu.html');
+        $result = $this->manager->selectAll();
+        $data['title'] = "系统菜单";
+        $data['content'] = json_encode($result);
+        $this->twig->view('sysmenu.html',$data);
+    }
+
+    public function insertMenu(){
+	    if($_POST){
+            $ins = $this->manager->insert($_POST);
+            $data = $this->manager->get($ins);
+            $result = array('status'=>200,'msg'=>$data[0]);
+            echo json_encode($result);
+        }else{
+            $result = array('status'=>201,'msg'=>"插入失败！");
+            echo json_encode($result);
+        }
     }
 }
