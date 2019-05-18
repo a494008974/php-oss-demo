@@ -18,9 +18,9 @@
             <Input type="text" placeholder="name">
                 <Icon type="ios-search" slot="prepend"></Icon>
             </Input>
-            <Button type="primary">搜索</Button>
-            <Button type="primary">全部</Button>
-            <Button type="primary">新增</Button>
+            <Button type="primary" icon="ios-search">搜索</Button>
+            <Button type="primary" icon="ios-plus">全部</Button>
+            <Button type="primary" icon="ios-send">新增</Button>
         </div>
         <Table width="100%" :height="contentHeight.height" border :columns="columns2" :data="data4" style="margin: 20px"></Table>
         <Page :total="100" style="position: absolute;right: 20px"/>
@@ -86,126 +86,6 @@ export default {
                     address: 'New York No. 1 Lake Park',
                     province: 'America',
                     city: 'New York',
-                    zip: 100000
-                },
-                {
-                    name: 'Jim Green',
-                    age: 24,
-                    address: 'Washington, D.C. No. 1 Lake Park',
-                    province: 'America',
-                    city: 'Washington, D.C.',
-                    zip: 100000
-                },
-                {
-                    name: 'Joe Black',
-                    age: 30,
-                    address: 'Sydney No. 1 Lake Park',
-                    province: 'Australian',
-                    city: 'Sydney',
-                    zip: 100000
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park',
-                    province: 'Canada',
-                    city: 'Ottawa',
-                    zip: 100000
-                },
-                {
-                    name: 'John Brown',
-                    age: 18,
-                    address: 'New York No. 1 Lake Park',
-                    province: 'America',
-                    city: 'New York',
-                    zip: 100000
-                },
-                {
-                    name: 'Jim Green',
-                    age: 24,
-                    address: 'Washington, D.C. No. 1 Lake Park',
-                    province: 'America',
-                    city: 'Washington, D.C.',
-                    zip: 100000
-                },
-                {
-                    name: 'Joe Black',
-                    age: 30,
-                    address: 'Sydney No. 1 Lake Park',
-                    province: 'Australian',
-                    city: 'Sydney',
-                    zip: 100000
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park',
-                    province: 'Canada',
-                    city: 'Ottawa',
-                    zip: 100000
-                },
-                {
-                    name: 'Joe Black',
-                    age: 30,
-                    address: 'Sydney No. 1 Lake Park',
-                    province: 'Australian',
-                    city: 'Sydney',
-                    zip: 100000
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park',
-                    province: 'Canada',
-                    city: 'Ottawa',
-                    zip: 100000
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park',
-                    province: 'Canada',
-                    city: 'Ottawa',
-                    zip: 100000
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park',
-                    province: 'Canada',
-                    city: 'Ottawa',
-                    zip: 100000
-                },
-                {
-                    name: 'Joe Black',
-                    age: 30,
-                    address: 'Sydney No. 1 Lake Park',
-                    province: 'Australian',
-                    city: 'Sydney',
-                    zip: 100000
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park',
-                    province: 'Canada',
-                    city: 'Ottawa',
-                    zip: 100000
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park',
-                    province: 'Canada',
-                    city: 'Ottawa',
-                    zip: 100000
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park',
-                    province: 'Canada',
-                    city: 'Ottawa',
                     zip: 100000
                 }
             ]

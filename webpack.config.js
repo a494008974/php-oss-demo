@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry:  {
@@ -10,8 +11,8 @@ module.exports = {
         sysmenu:'./public/js/sysmenu.js',
 		admin:'./public/js/admin.js',
         common:'./public/js/common.js',
-        vue:'./public/js/vue.js',
-        jquery:'./public/js/jquery.js',
+        // vue:'./public/js/vue.js',
+        // jquery:'./public/js/jquery.js',
 	  },
   output: {
     path: path.resolve(__dirname, './public/dist/'),
@@ -20,7 +21,7 @@ module.exports = {
     chunkFilename: "[name].bundle.js",
   },
   plugins: [
-	 new CleanWebpackPlugin(['./public/dist/']),
+	 new CleanWebpackPlugin(),
      new HtmlWebpackPlugin({
        title: 'Output Management'
      }),
@@ -29,6 +30,7 @@ module.exports = {
         NODE_ENV: JSON.stringify('production')
       }
     }),
+    new VueLoaderPlugin()
    ],
     externals: {
         // vue: 'Vue',

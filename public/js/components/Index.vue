@@ -1,63 +1,123 @@
 <style>
-
+    .number2,.number3{color:#C40000;font-size:60px;font-family:Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif"}
 </style>
 <template>
     <div>
-        <!-- Standard button -->
-        <button type="button" class="btn btn-default">（默认样式）Default</button>
+        <h4>Basic</h4>
+        <br><br>
+        <ButtonGroup>
+            <Button>Cancel</Button>
+            <Button type="primary">Confirm</Button>
+        </ButtonGroup>
+        <ButtonGroup>
+            <Button disabled>Yesterday</Button>
+            <Button disabled>Today</Button>
+            <Button disabled>Tomorrow</Button>
+        </ButtonGroup>
+        <ButtonGroup>
+            <Button type="primary">L</Button>
+            <Button>M</Button>
+            <Button>M</Button>
+            <Button type="dashed">R</Button>
+        </ButtonGroup>
+        <br><br>
+        <h4>Icons</h4>
+        <br><br>
+        <ButtonGroup>
+            <Button type="primary">
+                <Icon type="ios-arrow-back"></Icon>
+                Backward
+            </Button>
+            <Button type="primary">
+                Forward
+                <Icon type="ios-arrow-forward"></Icon>
+            </Button>
+        </ButtonGroup>
+        <ButtonGroup>
+            <Button type="primary" icon="ios-skip-backward"></Button>
+            <Button type="primary" icon="ios-skip-forward"></Button>
+        </ButtonGroup>
+        <ButtonGroup>
+            <Button icon="ios-color-wand-outline"></Button>
+            <Button icon="ios-sunny-outline"></Button>
+            <Button icon="ios-crop"></Button>
+            <Button icon="ios-color-filter-outline"></Button>
+        </ButtonGroup>
+        <br><br>
+        <h4>Circle</h4>
+        <br><br>
+        <ButtonGroup shape="circle">
+            <Button type="primary">
+                <Icon type="ios-arrow-back"></Icon>
+                Backward
+            </Button>
+            <Button type="primary">
+                Forward
+                <Icon type="ios-arrow-forward"></Icon>
+            </Button>
+        </ButtonGroup>
+        <ButtonGroup shape="circle">
+            <Button type="primary" icon="ios-skip-backward"></Button>
+            <Button type="primary" icon="ios-skip-forward"></Button>
+        </ButtonGroup>
+        <ButtonGroup shape="circle">
+            <Button icon="ios-color-wand-outline"></Button>
+            <Button icon="ios-sunny-outline"></Button>
+            <Button icon="ios-crop"></Button>
+            <Button icon="ios-color-filter-outline"></Button>
+        </ButtonGroup>
+        <br><br>
+        <h4>Size</h4>
+        <br><br>
+        <ButtonGroup size="large">
+            <Button>Large</Button>
+            <Button>Large</Button>
+        </ButtonGroup>
+        <ButtonGroup>
+            <Button>Default</Button>
+            <Button>Default</Button>
+        </ButtonGroup>
+        <ButtonGroup size="small">
+            <Button>Small</Button>
+            <Button>Small</Button>
+        </ButtonGroup>
+        <br><br>
+        <ButtonGroup size="large" shape="circle">
+            <Button>Large</Button>
+            <Button>Large</Button>
+        </ButtonGroup>
+        <ButtonGroup shape="circle">
+            <Button>Default</Button>
+            <Button>Default</Button>
+        </ButtonGroup>
+        <ButtonGroup size="small" shape="circle">
+            <Button>Small</Button>
+            <Button>Small</Button>
+        </ButtonGroup>
 
-        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-primary">（首选项）Primary</button>
+        <ButtonGroup vertical>
+            <Button icon="logo-facebook"></Button>
+            <Button icon="logo-twitter"></Button>
+            <Button icon="logo-googleplus"></Button>
+            <Button icon="logo-tumblr"></Button>
+        </ButtonGroup>
 
-        <!-- Indicates a successful or positive action -->
-        <button type="button" class="btn btn-success">（成功）Success</button>
-
-        <!-- Contextual button for informational alert messages -->
-        <button type="button" class="btn btn-info">（一般信息）Info</button>
-
-        <!-- Indicates caution should be taken with this action -->
-        <button type="button" class="btn btn-warning">（警告）Warning</button>
-
-        <!-- Indicates a dangerous or potentially negative action -->
-        <button type="button" class="btn btn-danger">（危险）Danger</button>
-
-        <!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
-        <button type="button" class="btn btn-link">（链接）Link</button>
-
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Launch demo modal
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
 <script>
-
-
     export default {
+        props:{
+
+        },
         data: function() {
             return {
-
             }
         },
+        mounted() {
 
+        }
     }
+
+
 </script>

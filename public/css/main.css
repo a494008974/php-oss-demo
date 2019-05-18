@@ -1,5 +1,4 @@
 body{
-    background: url("../images/bg_login.jpg") no-repeat fixed;
     /* set background tensile */
     background-size: 100% 100%;
     -moz-background-size: 100% 100%;
@@ -70,13 +69,6 @@ body{
     border-right: 1px solid #dcdcdc;
 }
 
-.login-input-box .icon.icon-user{
-    background: url("../images/user.png");
-}
-
-.login-input-box .icon.icon-password{
-    background: url("../images/password.png");
-}
 
 .remember-box{
     width: auto;

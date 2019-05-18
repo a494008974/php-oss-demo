@@ -3,13 +3,13 @@
 </style>
 <template>
 		<div>
-			<Menu theme="dark" width="300px" @on-select="subMenuClick">
+			<Menu ref="leftMenu" theme="dark" width="300px" :open-names="open2" @on-select="subMenuClick">
                 <Submenu v-for="item in content.submenu"
 						 :key="content.Id+'-'+item.Id"
 						 :name="content.Id+'-'+item.Id">
                     <template slot="title">
                         <Icon :type="item.icon"></Icon>
-                        {{item.title}}
+                       {{item.title}}
                     </template>
 					<Menu-item  v-for="subitem in item.submenu"
 								:key="content.Id+'-'+item.Id+'-'+subitem.Id"
@@ -18,6 +18,7 @@
 						{{subitem.title}}
 					</Menu-item>
                 </Submenu>
+
             </Menu>
 		</div>
 </template>
@@ -31,6 +32,21 @@
             return {
             }
         },
+		mounted:function(){
+			this.$nextTick(function() {
+				this.$refs.leftMenu.updateOpened();
+				this.$refs.leftMenu.updateActiveName();
+			})
+		},
+		computed:{
+			open2:function () {
+				var open = new Array();
+				for (var i in this.content.submenu){
+					open.push(this.content.Id+'-'+this.content.submenu[i].Id);
+				}
+				return open;
+			}
+		},
 		methods: {
 			subMenuClick: function (name) {
 				this.selectSubActive(name);
@@ -46,7 +62,6 @@
 									this.$bus.emit('selectSubActive', this.content.submenu[i].submenu[j],name);
 									break;
 								}
-
 							}
 						}
 					}
