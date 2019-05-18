@@ -1,5 +1,8 @@
 <style>
     .number2,.number3{color:#C40000;font-size:60px;font-family:Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif"}
+    .ivu-tabs-nav .ivu-tabs-tab{
+        height: auto;
+    }
 </style>
 <template>
     <div>
@@ -102,6 +105,24 @@
             <Button icon="logo-tumblr"></Button>
         </ButtonGroup>
 
+        <Tabs value="name1">
+            <TabPane label="标签一" name="name1">标签一的内容</TabPane>
+            <TabPane label="标签二" name="name2">标签二的内容</TabPane>
+            <TabPane label="标签三" name="name3">标签三的内容</TabPane>
+        </Tabs>
+
+        <Tabs>
+            <TabPane label="macOS" icon="logo-apple">标签一的内容</TabPane>
+            <TabPane label="Windows" icon="logo-windows">标签二的内容</TabPane>
+            <TabPane label="Linux" icon="logo-tux">标签三的内容</TabPane>
+        </Tabs>
+
+        <Tabs type="card" closable @on-tab-remove="handleTabRemove">
+            <TabPane label="标签一" v-if="tab0">标签一的内容</TabPane>
+            <TabPane label="标签二" v-if="tab1">标签二的内容</TabPane>
+            <TabPane label="标签三" v-if="tab2">标签三的内容</TabPane>
+        </Tabs>
+
     </div>
 </template>
 
@@ -112,6 +133,14 @@
         },
         data: function() {
             return {
+                tab0: true,
+                tab1: true,
+                tab2: true
+            }
+        },
+        methods: {
+            handleTabRemove (name) {
+                this['tab' + name] = false;
             }
         },
         mounted() {

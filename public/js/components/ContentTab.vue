@@ -1,30 +1,48 @@
 <style>
-	.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab {
-		margin: 0;
-		margin-right: 1px;
-		height: 28px;
-		padding: 5px 16px 4px;
-		border: 1px solid #dddee1;
-		border-bottom: 0;
-		transition: all .3s ease-in-out;
-		background: #f8f8f9;
-	}
+	/*.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab {*/
+		/*margin: 0;*/
+		/*margin-right: 1px;*/
+		/*height: 28px;*/
+		/*padding: 5px 16px 4px;*/
+		/*border: 1px solid #dddee1;*/
+		/*border-bottom: 0;*/
+		/*transition: all .3s ease-in-out;*/
+		/*background: #f8f8f9;*/
+	/*}*/
+
+	/*.ivu-tabs-nav .ivu-tabs-tab{*/
+		/*height: auto;*/
+	/*}*/
+
+	/*.ivu-tabs-nav {*/
+		/*bottom: 0px;*/
+		/*margin-left: 4px;*/
+		/*position: absolute;*/
+	/*}*/
+
+	/*.ivu-tabs-bar {*/
+		/*border-bottom: 1px solid #dddee1;*/
+		/*margin-bottom: 0px;*/
+	/*}*/
+
+	/*#app > div.layout_content > div.layout_main_content > div > div > div.ivu-tabs-bar > div > div > div > div > div:nth-child(2) > i{*/
+		/*display: none;*/
+	/*}*/
 
 	.ivu-tabs-nav {
-		bottom: 0px;
+		height: 28px;
+		margin-top: 4px;
 		margin-left: 4px;
-		position: absolute;
 	}
 
-	.ivu-tabs-bar {
-		border-bottom: 1px solid #dddee1;
-		margin-bottom: 0px;
+	.ivu-tabs-nav .ivu-tabs-tab{
+		height: auto;
 	}
 
-	#app > div.layout_content > div.layout_main_content > div > div > div.ivu-tabs-bar > div > div > div > div > div:nth-child(2) > i{
+	div.ivu-tabs-bar > div > div > div > div > div:nth-child(2) > i{
 		display: none;
 	}
-	
+
 	.layout-iframe{
 		width:100%; 
 		height:300px;
@@ -65,7 +83,10 @@
                 return {
     				showIndex: true,
     				tabs:null,
-    				value:'index'
+    				value:'index',
+					tab0: true,
+					tab1: true,
+					tab2: true
                 }
             },
             methods: {

@@ -1,6 +1,6 @@
-// import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap/dist/js/bootstrap.js';
 // import 'bootstrap/dist/css/bootstrap-theme.css';
-// import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './jquery.leoTextAnimate.js';
 
 import Index from './components/Index.vue';
