@@ -37,7 +37,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['login_title'] = 'BSW MANAGER';
+$lang['login_title'] = 'MANAGER';
 $lang['login_placeholder_username'] = 'Please enter your username';
 $lang['login_placeholder_password'] = 'Please enter your password';
 $lang['login_remember'] = 'Remember password';

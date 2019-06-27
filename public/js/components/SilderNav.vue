@@ -47,7 +47,19 @@
 				return open;
 			}
 		},
+		created() {
+			this.$bus.on('selectNav', this.selectNav);
+		},
+		beforeDestroy() {
+			this.$bus.off('selectNav', this.selectNav);
+		},
 		methods: {
+			selectNav() {
+				this.$nextTick(function() {
+					this.$refs.leftMenu.updateOpened();
+					this.$refs.leftMenu.updateActiveName();
+				})
+			},
 			subMenuClick: function (name) {
 				this.selectSubActive(name);
 			},

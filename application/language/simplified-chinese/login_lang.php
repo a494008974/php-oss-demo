@@ -37,7 +37,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['login_title'] = 'BSW战队管理系统';
+$lang['login_title'] = '后台管理系统';
 $lang['login_placeholder_username'] = '请输入您的用户名';
 $lang['login_placeholder_password'] = '请输入您的密码';
 $lang['login_remember'] = '记住密码';

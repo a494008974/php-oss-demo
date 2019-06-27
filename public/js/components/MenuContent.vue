@@ -29,6 +29,9 @@
                     class-name="vertical-center-modal">
 
                 <Form :model="formItem" :label-width="80">
+                    <FormItem label="ID">
+                        <Input ref="Id" v-model="formItem.Id" hidden placeholder="Enter something..."></Input>
+                    </FormItem>
                     <FormItem label="TITLE">
                         <Input ref="title" v-model="formItem.title" placeholder="Enter something..."></Input>
                     </FormItem>
@@ -63,6 +66,7 @@ export default {
             contentNew: this.content,
             addmenu: false,
             formItem: {
+                Id: '',
                 title: '',
                 icon: '',
                 url: '',
@@ -115,6 +119,7 @@ export default {
     methods: {
         onok: function(){
             var params = new URLSearchParams();
+            params.append('Id', this.$refs.title.Id);
             params.append('title', this.$refs.title.value);
             params.append('icon', this.$refs.icon.value);
             params.append('url', this.$refs.url.value);
@@ -122,7 +127,8 @@ export default {
             this.$axios.post("http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/insertMenu",params).then(res=>{
                 console.log(res.data);
                 if(res.data.status == 200){
-                    this.contentNew.push(res.data.msg);
+                    this.$Message.info(res.data.msg);
+                    //this.contentNew.push(res.data.msg);
                 }else {
                     this.$Message.info(res.data.msg);
                 }

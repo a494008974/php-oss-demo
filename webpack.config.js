@@ -8,7 +8,7 @@ module.exports = {
   entry:  {
 		index:'./public/js/index.js',
         login:'./public/js/login.js',
-        sysmenu:'./public/js/sysmenu.js',
+        menucontent:'./public/js/menucontent.js',
 		admin:'./public/js/admin.js',
         common:'./public/js/common.js',
         // vue:'./public/js/vue.js',

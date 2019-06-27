@@ -192,10 +192,11 @@
                 var params = new URLSearchParams();
                 params.append('username', this.$refs.username.value);
                 params.append('password', this.$refs.password.value);
-                this.$axios.post("http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/login",params).then(res=>{
-                    // console.log(res.data);
+                this.$axios.post("loginAction",params).then(res=>{
+                    console.log(res.data);
                     if(res.data.status == 200){
-                        location.href = 'http://localhost:8888/php-oss-demo/public/index.php/AdminCtrl/admin'
+                        location.href = "index";
+                        this.$Message.info(res.data.msg);
                     }else{
                         this.$Message.info(res.data.msg);
                     }
