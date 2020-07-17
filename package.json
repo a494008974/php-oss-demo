@@ -13,7 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "fsevents": "^2.0.7",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "vue": "^2.6.10",
     "vue-bus": "^1.2.1",
     "webpack-cli": "^3.3.2"
